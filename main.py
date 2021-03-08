@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_mongoengine import MongoEngine
 import datetime
-import json
 
 app = Flask(__name__)
 app.config['MONGODB_SETTINGS'] = {
@@ -48,7 +47,7 @@ def create_audio():
         return jsonify(data), 201
     if file == 'audiobook' and 'author_name' in body and 'duration' in body and 'audiobook_title' in body and \
             'duration' in body and 'narrator' in body:
-        audio = AudioBook(author_name=body['host'],
+        audio = AudioBook(author_name=body['author_name'],
                           duration=body['duration'],
                           narrator=body['narrator'],
                           audiobook_title=body['audiobook_title'],).save()
